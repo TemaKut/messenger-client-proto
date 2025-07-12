@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option go_package = "gen/go";
+
+
+message Response {
+  uint64 id = 1;
+
+  reserved 2 to 10;
+
+  oneof source {
+    Errors errors = 11;
+    Success success = 12;
+  }
+}
+
+message Errors {
+  repeated Error errors = 1;
+}
+
+message Error {
+   // TODO
+}
+
+message Success {
+  oneof data {
+    AuthResponse auth = 1;
+  }
+}
+
+message AuthResponse {
+  string username = 1;
+  string password = 2;
+}
+

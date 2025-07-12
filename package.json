@@ -1,0 +1,7 @@
+{
+  "name": "74275480",
+  "version": "0.0.1",
+  "dependencies": {
+    "ts-protoc-gen": "^0.15.0"
+  }
+}
