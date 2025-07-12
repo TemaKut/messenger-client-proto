@@ -3,7 +3,7 @@ init.typescript:
 
 PROTO_FILES := $(wildcard ./proto/*.proto)
 
-gen.proto: gen.proto.go gen.proto.typescript
+gen.proto: gen.proto.go gen.proto.typescript gen.proto.typescript.index
 
 gen.proto.go:
 	@protoc \
@@ -20,3 +20,11 @@ gen.proto.typescript:
 		--plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
 		--ts_out=./gen/ts \
 		$(PROTO_FILES)
+
+
+gen.proto.typescript.index:
+	@echo "// Auto-generated re-exports" > gen/ts/index.ts
+	@find gen/ts -name '*.d.ts' -not -name 'index.d.ts' | while read file; do \
+		mod=$$(basename $$file .d.ts); \
+		echo "export * from './$$mod';" >> gen/ts/index.ts; \
+	done

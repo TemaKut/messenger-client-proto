@@ -1,6 +1,7 @@
 {
-  "name": "74275480",
+  "name": "client-proto",
   "version": "0.0.1",
+  "types": "gen/ts/index.d.ts",
   "dependencies": {
     "ts-protoc-gen": "^0.15.0"
   }
