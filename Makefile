@@ -19,6 +19,7 @@ gen.proto.typescript:
 		-I ./proto \
 		--plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
 		--ts_out=./gen/ts \
+		--js_out=import_style=commonjs,binary:gen/ts \
 		$(PROTO_FILES)
 
 
