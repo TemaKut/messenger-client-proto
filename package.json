@@ -1,7 +1,6 @@
 {
   "name": "client-proto",
-  "version": "0.0.1",
-  "types": "gen/ts/index.d.ts",
+  "version": "0.0.2",
   "dependencies": {
     "google-protobuf": "^3.21.4",
     "ts-protoc-gen": "^0.15.0"

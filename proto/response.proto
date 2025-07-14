@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+package messenger;
+
+import "user/user.proto";
+
 option go_package = "gen/go";
 
 
@@ -24,12 +28,11 @@ message Error {
 
 message Success {
   oneof data {
-    AuthResponse auth = 1;
+    UserRegisterResponse user_register = 1;
   }
 }
 
-message AuthResponse {
-  string username = 1;
-  string password = 2;
+message UserRegisterResponse {
+  messenger.user.User user = 1;
 }
 

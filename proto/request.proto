@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package messenger;
+
 option go_package = "gen/go";
 
 message Request {
@@ -8,11 +10,13 @@ message Request {
   reserved 2 to 10;
 
   oneof data {
-    AuthRequest auth = 11;
+    UserRegisterRequest user_register = 11;
   }
 }
 
-message AuthRequest {
-  string username = 1;
-  string password = 2;
+message UserRegisterRequest {
+  string name = 1;
+  string last_name = 2;
+  string email = 3;
+  string password = 4;
 }

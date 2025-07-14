@@ -1,4 +1,4 @@
-// package: 
+// package: messenger
 // file: request.proto
 
 import * as jspb from "google-protobuf";
@@ -7,10 +7,10 @@ export class Request extends jspb.Message {
   getId(): number;
   setId(value: number): void;
 
-  hasAuth(): boolean;
-  clearAuth(): void;
-  getAuth(): AuthRequest | undefined;
-  setAuth(value?: AuthRequest): void;
+  hasUserRegister(): boolean;
+  clearUserRegister(): void;
+  getUserRegister(): UserRegisterRequest | undefined;
+  setUserRegister(value?: UserRegisterRequest): void;
 
   getDataCase(): Request.DataCase;
   serializeBinary(): Uint8Array;
@@ -26,35 +26,43 @@ export class Request extends jspb.Message {
 export namespace Request {
   export type AsObject = {
     id: number,
-    auth?: AuthRequest.AsObject,
+    userRegister?: UserRegisterRequest.AsObject,
   }
 
   export enum DataCase {
     DATA_NOT_SET = 0,
-    AUTH = 11,
+    USER_REGISTER = 11,
   }
 }
 
-export class AuthRequest extends jspb.Message {
-  getUsername(): string;
-  setUsername(value: string): void;
+export class UserRegisterRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getLastName(): string;
+  setLastName(value: string): void;
+
+  getEmail(): string;
+  setEmail(value: string): void;
 
   getPassword(): string;
   setPassword(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AuthRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: AuthRequest): AuthRequest.AsObject;
+  toObject(includeInstance?: boolean): UserRegisterRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UserRegisterRequest): UserRegisterRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: AuthRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AuthRequest;
-  static deserializeBinaryFromReader(message: AuthRequest, reader: jspb.BinaryReader): AuthRequest;
+  static serializeBinaryToWriter(message: UserRegisterRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserRegisterRequest;
+  static deserializeBinaryFromReader(message: UserRegisterRequest, reader: jspb.BinaryReader): UserRegisterRequest;
 }
 
-export namespace AuthRequest {
+export namespace UserRegisterRequest {
   export type AsObject = {
-    username: string,
+    name: string,
+    lastName: string,
+    email: string,
     password: string,
   }
 }
