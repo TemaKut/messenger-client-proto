@@ -4,6 +4,7 @@
 import * as jspb from "google-protobuf";
 import * as user_user_pb from "./user/user_pb";
 import * as user_auth_pb from "./user/auth_pb";
+import * as error_pb from "./error_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class Response extends jspb.Message {
@@ -17,8 +18,8 @@ export class Response extends jspb.Message {
 
   hasError(): boolean;
   clearError(): void;
-  getError(): Error | undefined;
-  setError(value?: Error): void;
+  getError(): error_pb.Error | undefined;
+  setError(value?: error_pb.Error): void;
 
   hasSuccess(): boolean;
   clearSuccess(): void;
@@ -40,7 +41,7 @@ export namespace Response {
   export type AsObject = {
     id: string,
     serverTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    error?: Error.AsObject,
+    error?: error_pb.Error.AsObject,
     success?: Success.AsObject,
   }
 
@@ -129,37 +130,4 @@ export namespace UserAuthorizeResponse {
     authParams?: user_auth_pb.AuthParams.AsObject,
   }
 }
-
-export class Error extends jspb.Message {
-  getReason(): ErrorReasonMap[keyof ErrorReasonMap];
-  setReason(value: ErrorReasonMap[keyof ErrorReasonMap]): void;
-
-  getDescription(): string;
-  setDescription(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Error.AsObject;
-  static toObject(includeInstance: boolean, msg: Error): Error.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Error, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Error;
-  static deserializeBinaryFromReader(message: Error, reader: jspb.BinaryReader): Error;
-}
-
-export namespace Error {
-  export type AsObject = {
-    reason: ErrorReasonMap[keyof ErrorReasonMap],
-    description: string,
-  }
-}
-
-export interface ErrorReasonMap {
-  ERROR_REASON_UNKNOWN: 0;
-  ERROR_REASON_REQUEST_HAS_NO_ID: 1;
-  ERROR_REASON_REQUEST_VALIDATE: 2;
-  ERROR_REASON_USER_EMAIL_ALREADY_EXISTS: 3;
-}
-
-export const ErrorReason: ErrorReasonMap;
 

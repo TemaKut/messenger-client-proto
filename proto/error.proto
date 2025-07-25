@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package messenger;
+
+option go_package = "github.com/TemaKut/messenger-client-proto/gen/go";
+
+message Error {
+  ErrorReason reason = 1;
+  string description = 2;
+}
+
+enum ErrorReason {
+  ERROR_REASON_UNKNOWN = 0;
+
+  ERROR_REASON_REQUEST_HAS_NO_ID = 1;
+  ERROR_REASON_REQUEST_VALIDATE = 2;
+
+  ERROR_REASON_FORBIDDEN = 3;
+
+  ERROR_REASON_USER_EMAIL_ALREADY_EXISTS = 4;
+}
