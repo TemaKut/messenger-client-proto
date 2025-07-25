@@ -5,12 +5,14 @@ package messenger;
 option go_package = "github.com/TemaKut/messenger-client-proto/gen/go";
 
 message Request {
-  uint64 id = 1;
+  string id = 1; // uuid
 
   reserved 2 to 10;
 
   oneof data {
     UserRegisterRequest user_register = 11;
+    UserAuthorizeRequest user_authorize = 12;
+    // TODO подумать над рефреш токеном, либо из хедеров подключения либо отдельный запрос либо в UserAuthorizeRequest
   }
 }
 
@@ -19,4 +21,17 @@ message UserRegisterRequest {
   string last_name = 2;
   string email = 3;
   string password = 4;
+}
+
+message UserAuthorizeRequest {
+  oneof credentials {
+    UserAuthorizeEmailCredential email = 1;
+  }
+
+  reserved 2 to 5;
+}
+
+message UserAuthorizeEmailCredential {
+  string email = 1;
+  string password = 2;
 }

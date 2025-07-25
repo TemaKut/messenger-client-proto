@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package messenger.user;
+
+import "user/user.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/TemaKut/messenger-client-proto/gen/go/user";
+
+message AuthParams {
+  User user = 1;
+  AuthToken access_token = 2;
+  AuthToken refresh_token = 3;
+}
+
+message AuthToken {
+  string token = 1;
+  google.protobuf.Timestamp expired_at = 2;
+}

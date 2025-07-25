@@ -3,15 +3,22 @@
 
 import * as jspb from "google-protobuf";
 import * as user_user_pb from "./user/user_pb";
+import * as user_auth_pb from "./user/auth_pb";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class Response extends jspb.Message {
-  getId(): number;
-  setId(value: number): void;
+  getId(): string;
+  setId(value: string): void;
 
-  hasErrors(): boolean;
-  clearErrors(): void;
-  getErrors(): Errors | undefined;
-  setErrors(value?: Errors): void;
+  hasServerTime(): boolean;
+  clearServerTime(): void;
+  getServerTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setServerTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasError(): boolean;
+  clearError(): void;
+  getError(): Error | undefined;
+  setError(value?: Error): void;
 
   hasSuccess(): boolean;
   clearSuccess(): void;
@@ -31,53 +38,16 @@ export class Response extends jspb.Message {
 
 export namespace Response {
   export type AsObject = {
-    id: number,
-    errors?: Errors.AsObject,
+    id: string,
+    serverTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    error?: Error.AsObject,
     success?: Success.AsObject,
   }
 
   export enum SourceCase {
     SOURCE_NOT_SET = 0,
-    ERRORS = 11,
+    ERROR = 11,
     SUCCESS = 12,
-  }
-}
-
-export class Errors extends jspb.Message {
-  clearErrorsList(): void;
-  getErrorsList(): Array<Error>;
-  setErrorsList(value: Array<Error>): void;
-  addErrors(value?: Error, index?: number): Error;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Errors.AsObject;
-  static toObject(includeInstance: boolean, msg: Errors): Errors.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Errors, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Errors;
-  static deserializeBinaryFromReader(message: Errors, reader: jspb.BinaryReader): Errors;
-}
-
-export namespace Errors {
-  export type AsObject = {
-    errorsList: Array<Error.AsObject>,
-  }
-}
-
-export class Error extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Error.AsObject;
-  static toObject(includeInstance: boolean, msg: Error): Error.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Error, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Error;
-  static deserializeBinaryFromReader(message: Error, reader: jspb.BinaryReader): Error;
-}
-
-export namespace Error {
-  export type AsObject = {
   }
 }
 
@@ -86,6 +56,11 @@ export class Success extends jspb.Message {
   clearUserRegister(): void;
   getUserRegister(): UserRegisterResponse | undefined;
   setUserRegister(value?: UserRegisterResponse): void;
+
+  hasUserAuthorize(): boolean;
+  clearUserAuthorize(): void;
+  getUserAuthorize(): UserAuthorizeResponse | undefined;
+  setUserAuthorize(value?: UserAuthorizeResponse): void;
 
   getDataCase(): Success.DataCase;
   serializeBinary(): Uint8Array;
@@ -101,11 +76,13 @@ export class Success extends jspb.Message {
 export namespace Success {
   export type AsObject = {
     userRegister?: UserRegisterResponse.AsObject,
+    userAuthorize?: UserAuthorizeResponse.AsObject,
   }
 
   export enum DataCase {
     DATA_NOT_SET = 0,
     USER_REGISTER = 1,
+    USER_AUTHORIZE = 2,
   }
 }
 
@@ -130,4 +107,59 @@ export namespace UserRegisterResponse {
     user?: user_user_pb.User.AsObject,
   }
 }
+
+export class UserAuthorizeResponse extends jspb.Message {
+  hasAuthParams(): boolean;
+  clearAuthParams(): void;
+  getAuthParams(): user_auth_pb.AuthParams | undefined;
+  setAuthParams(value?: user_auth_pb.AuthParams): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserAuthorizeResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UserAuthorizeResponse): UserAuthorizeResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UserAuthorizeResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserAuthorizeResponse;
+  static deserializeBinaryFromReader(message: UserAuthorizeResponse, reader: jspb.BinaryReader): UserAuthorizeResponse;
+}
+
+export namespace UserAuthorizeResponse {
+  export type AsObject = {
+    authParams?: user_auth_pb.AuthParams.AsObject,
+  }
+}
+
+export class Error extends jspb.Message {
+  getReason(): ErrorReasonMap[keyof ErrorReasonMap];
+  setReason(value: ErrorReasonMap[keyof ErrorReasonMap]): void;
+
+  getDescription(): string;
+  setDescription(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Error.AsObject;
+  static toObject(includeInstance: boolean, msg: Error): Error.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: Error, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Error;
+  static deserializeBinaryFromReader(message: Error, reader: jspb.BinaryReader): Error;
+}
+
+export namespace Error {
+  export type AsObject = {
+    reason: ErrorReasonMap[keyof ErrorReasonMap],
+    description: string,
+  }
+}
+
+export interface ErrorReasonMap {
+  ERROR_REASON_UNKNOWN: 0;
+  ERROR_REASON_REQUEST_HAS_NO_ID: 1;
+  ERROR_REASON_REQUEST_VALIDATE: 2;
+  ERROR_REASON_USER_EMAIL_ALREADY_EXISTS: 3;
+}
+
+export const ErrorReason: ErrorReasonMap;
 
