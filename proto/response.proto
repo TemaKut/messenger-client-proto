@@ -34,5 +34,6 @@ message UserRegisterResponse {
 }
 
 message UserAuthorizeResponse {
-  messenger.user.AuthParams auth_params = 1;
+  messenger.user.User user = 1;
+  messenger.user.AuthParams auth_params = 2;
 }

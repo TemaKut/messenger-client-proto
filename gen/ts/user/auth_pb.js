@@ -21,8 +21,6 @@ var global =
     (function () { return this; }).call(null) ||
     Function('return this')();
 
-var user_user_pb = require('../user/user_pb.js');
-goog.object.extend(proto, user_user_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 goog.exportSymbol('proto.messenger.user.AuthParams', null, global);
@@ -101,7 +99,6 @@ proto.messenger.user.AuthParams.prototype.toObject = function(opt_includeInstanc
  */
 proto.messenger.user.AuthParams.toObject = function(includeInstance, msg) {
   var f, obj = {
-user: (f = msg.getUser()) && user_user_pb.User.toObject(includeInstance, f),
 accessToken: (f = msg.getAccessToken()) && proto.messenger.user.AuthToken.toObject(includeInstance, f),
 refreshToken: (f = msg.getRefreshToken()) && proto.messenger.user.AuthToken.toObject(includeInstance, f)
   };
@@ -141,16 +138,11 @@ proto.messenger.user.AuthParams.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new user_user_pb.User;
-      reader.readMessage(value,user_user_pb.User.deserializeBinaryFromReader);
-      msg.setUser(value);
-      break;
-    case 2:
       var value = new proto.messenger.user.AuthToken;
       reader.readMessage(value,proto.messenger.user.AuthToken.deserializeBinaryFromReader);
       msg.setAccessToken(value);
       break;
-    case 3:
+    case 2:
       var value = new proto.messenger.user.AuthToken;
       reader.readMessage(value,proto.messenger.user.AuthToken.deserializeBinaryFromReader);
       msg.setRefreshToken(value);
@@ -184,18 +176,10 @@ proto.messenger.user.AuthParams.prototype.serializeBinary = function() {
  */
 proto.messenger.user.AuthParams.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUser();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      user_user_pb.User.serializeBinaryToWriter
-    );
-  }
   f = message.getAccessToken();
   if (f != null) {
     writer.writeMessage(
-      2,
+      1,
       f,
       proto.messenger.user.AuthToken.serializeBinaryToWriter
     );
@@ -203,7 +187,7 @@ proto.messenger.user.AuthParams.serializeBinaryToWriter = function(message, writ
   f = message.getRefreshToken();
   if (f != null) {
     writer.writeMessage(
-      3,
+      2,
       f,
       proto.messenger.user.AuthToken.serializeBinaryToWriter
     );
@@ -212,49 +196,12 @@ proto.messenger.user.AuthParams.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional User user = 1;
- * @return {?proto.messenger.user.User}
- */
-proto.messenger.user.AuthParams.prototype.getUser = function() {
-  return /** @type{?proto.messenger.user.User} */ (
-    jspb.Message.getWrapperField(this, user_user_pb.User, 1));
-};
-
-
-/**
- * @param {?proto.messenger.user.User|undefined} value
- * @return {!proto.messenger.user.AuthParams} returns this
-*/
-proto.messenger.user.AuthParams.prototype.setUser = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.messenger.user.AuthParams} returns this
- */
-proto.messenger.user.AuthParams.prototype.clearUser = function() {
-  return this.setUser(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.messenger.user.AuthParams.prototype.hasUser = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional AuthToken access_token = 2;
+ * optional AuthToken access_token = 1;
  * @return {?proto.messenger.user.AuthToken}
  */
 proto.messenger.user.AuthParams.prototype.getAccessToken = function() {
   return /** @type{?proto.messenger.user.AuthToken} */ (
-    jspb.Message.getWrapperField(this, proto.messenger.user.AuthToken, 2));
+    jspb.Message.getWrapperField(this, proto.messenger.user.AuthToken, 1));
 };
 
 
@@ -263,7 +210,7 @@ proto.messenger.user.AuthParams.prototype.getAccessToken = function() {
  * @return {!proto.messenger.user.AuthParams} returns this
 */
 proto.messenger.user.AuthParams.prototype.setAccessToken = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
+  return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
@@ -281,17 +228,17 @@ proto.messenger.user.AuthParams.prototype.clearAccessToken = function() {
  * @return {boolean}
  */
 proto.messenger.user.AuthParams.prototype.hasAccessToken = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional AuthToken refresh_token = 3;
+ * optional AuthToken refresh_token = 2;
  * @return {?proto.messenger.user.AuthToken}
  */
 proto.messenger.user.AuthParams.prototype.getRefreshToken = function() {
   return /** @type{?proto.messenger.user.AuthToken} */ (
-    jspb.Message.getWrapperField(this, proto.messenger.user.AuthToken, 3));
+    jspb.Message.getWrapperField(this, proto.messenger.user.AuthToken, 2));
 };
 
 
@@ -300,7 +247,7 @@ proto.messenger.user.AuthParams.prototype.getRefreshToken = function() {
  * @return {!proto.messenger.user.AuthParams} returns this
 */
 proto.messenger.user.AuthParams.prototype.setRefreshToken = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -318,7 +265,7 @@ proto.messenger.user.AuthParams.prototype.clearRefreshToken = function() {
  * @return {boolean}
  */
 proto.messenger.user.AuthParams.prototype.hasRefreshToken = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

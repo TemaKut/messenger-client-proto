@@ -2,15 +2,9 @@
 // file: user/auth.proto
 
 import * as jspb from "google-protobuf";
-import * as user_user_pb from "../user/user_pb";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 export class AuthParams extends jspb.Message {
-  hasUser(): boolean;
-  clearUser(): void;
-  getUser(): user_user_pb.User | undefined;
-  setUser(value?: user_user_pb.User): void;
-
   hasAccessToken(): boolean;
   clearAccessToken(): void;
   getAccessToken(): AuthToken | undefined;
@@ -33,7 +27,6 @@ export class AuthParams extends jspb.Message {
 
 export namespace AuthParams {
   export type AsObject = {
-    user?: user_user_pb.User.AsObject,
     accessToken?: AuthToken.AsObject,
     refreshToken?: AuthToken.AsObject,
   }

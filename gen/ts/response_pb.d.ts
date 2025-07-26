@@ -110,6 +110,11 @@ export namespace UserRegisterResponse {
 }
 
 export class UserAuthorizeResponse extends jspb.Message {
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): user_user_pb.User | undefined;
+  setUser(value?: user_user_pb.User): void;
+
   hasAuthParams(): boolean;
   clearAuthParams(): void;
   getAuthParams(): user_auth_pb.AuthParams | undefined;
@@ -127,6 +132,7 @@ export class UserAuthorizeResponse extends jspb.Message {
 
 export namespace UserAuthorizeResponse {
   export type AsObject = {
+    user?: user_user_pb.User.AsObject,
     authParams?: user_auth_pb.AuthParams.AsObject,
   }
 }

@@ -839,6 +839,7 @@ proto.messenger.UserAuthorizeResponse.prototype.toObject = function(opt_includeI
  */
 proto.messenger.UserAuthorizeResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
+user: (f = msg.getUser()) && user_user_pb.User.toObject(includeInstance, f),
 authParams: (f = msg.getAuthParams()) && user_auth_pb.AuthParams.toObject(includeInstance, f)
   };
 
@@ -877,6 +878,11 @@ proto.messenger.UserAuthorizeResponse.deserializeBinaryFromReader = function(msg
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = new user_user_pb.User;
+      reader.readMessage(value,user_user_pb.User.deserializeBinaryFromReader);
+      msg.setUser(value);
+      break;
+    case 2:
       var value = new user_auth_pb.AuthParams;
       reader.readMessage(value,user_auth_pb.AuthParams.deserializeBinaryFromReader);
       msg.setAuthParams(value);
@@ -910,10 +916,18 @@ proto.messenger.UserAuthorizeResponse.prototype.serializeBinary = function() {
  */
 proto.messenger.UserAuthorizeResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAuthParams();
+  f = message.getUser();
   if (f != null) {
     writer.writeMessage(
       1,
+      f,
+      user_user_pb.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getAuthParams();
+  if (f != null) {
+    writer.writeMessage(
+      2,
       f,
       user_auth_pb.AuthParams.serializeBinaryToWriter
     );
@@ -922,12 +936,49 @@ proto.messenger.UserAuthorizeResponse.serializeBinaryToWriter = function(message
 
 
 /**
- * optional user.AuthParams auth_params = 1;
+ * optional user.User user = 1;
+ * @return {?proto.messenger.user.User}
+ */
+proto.messenger.UserAuthorizeResponse.prototype.getUser = function() {
+  return /** @type{?proto.messenger.user.User} */ (
+    jspb.Message.getWrapperField(this, user_user_pb.User, 1));
+};
+
+
+/**
+ * @param {?proto.messenger.user.User|undefined} value
+ * @return {!proto.messenger.UserAuthorizeResponse} returns this
+*/
+proto.messenger.UserAuthorizeResponse.prototype.setUser = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.messenger.UserAuthorizeResponse} returns this
+ */
+proto.messenger.UserAuthorizeResponse.prototype.clearUser = function() {
+  return this.setUser(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.messenger.UserAuthorizeResponse.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional user.AuthParams auth_params = 2;
  * @return {?proto.messenger.user.AuthParams}
  */
 proto.messenger.UserAuthorizeResponse.prototype.getAuthParams = function() {
   return /** @type{?proto.messenger.user.AuthParams} */ (
-    jspb.Message.getWrapperField(this, user_auth_pb.AuthParams, 1));
+    jspb.Message.getWrapperField(this, user_auth_pb.AuthParams, 2));
 };
 
 
@@ -936,7 +987,7 @@ proto.messenger.UserAuthorizeResponse.prototype.getAuthParams = function() {
  * @return {!proto.messenger.UserAuthorizeResponse} returns this
 */
 proto.messenger.UserAuthorizeResponse.prototype.setAuthParams = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -954,7 +1005,7 @@ proto.messenger.UserAuthorizeResponse.prototype.clearAuthParams = function() {
  * @return {boolean}
  */
 proto.messenger.UserAuthorizeResponse.prototype.hasAuthParams = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
