@@ -34,6 +34,7 @@ export interface ErrorReasonMap {
   ERROR_REASON_FORBIDDEN: 3;
   ERROR_REASON_USER_EMAIL_ALREADY_EXISTS: 4;
   ERROR_REASON_USER_INVALID_CREDENTIALS: 5;
+  ERROR_REASON_VALIDATION: 6;
 }
 
 export const ErrorReason: ErrorReasonMap;
