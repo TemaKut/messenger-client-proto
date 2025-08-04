@@ -76,8 +76,9 @@ proto.messenger.Error.prototype.toObject = function(opt_includeInstance) {
  */
 proto.messenger.Error.toObject = function(includeInstance, msg) {
   var f, obj = {
-reason: jspb.Message.getFieldWithDefault(msg, 1, 0),
-description: jspb.Message.getFieldWithDefault(msg, 2, "")
+requestId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+reason: jspb.Message.getFieldWithDefault(msg, 2, 0),
+description: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -115,10 +116,14 @@ proto.messenger.Error.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRequestId(value);
+      break;
+    case 2:
       var value = /** @type {!proto.messenger.ErrorReason} */ (reader.readEnum());
       msg.setReason(value);
       break;
-    case 2:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
       break;
@@ -151,17 +156,24 @@ proto.messenger.Error.prototype.serializeBinary = function() {
  */
 proto.messenger.Error.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getRequestId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getReason();
   if (f !== 0.0) {
     writer.writeEnum(
-      1,
+      2,
       f
     );
   }
   f = message.getDescription();
   if (f.length > 0) {
     writer.writeString(
-      2,
+      3,
       f
     );
   }
@@ -169,11 +181,29 @@ proto.messenger.Error.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional ErrorReason reason = 1;
+ * optional string request_id = 1;
+ * @return {string}
+ */
+proto.messenger.Error.prototype.getRequestId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.messenger.Error} returns this
+ */
+proto.messenger.Error.prototype.setRequestId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional ErrorReason reason = 2;
  * @return {!proto.messenger.ErrorReason}
  */
 proto.messenger.Error.prototype.getReason = function() {
-  return /** @type {!proto.messenger.ErrorReason} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {!proto.messenger.ErrorReason} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
@@ -182,16 +212,16 @@ proto.messenger.Error.prototype.getReason = function() {
  * @return {!proto.messenger.Error} returns this
  */
 proto.messenger.Error.prototype.setReason = function(value) {
-  return jspb.Message.setProto3EnumField(this, 1, value);
+  return jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
 /**
- * optional string description = 2;
+ * optional string description = 3;
  * @return {string}
  */
 proto.messenger.Error.prototype.getDescription = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -200,7 +230,7 @@ proto.messenger.Error.prototype.getDescription = function() {
  * @return {!proto.messenger.Error} returns this
  */
 proto.messenger.Error.prototype.setDescription = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
