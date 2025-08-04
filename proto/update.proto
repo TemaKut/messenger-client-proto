@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package messenger;
+
+option go_package = "github.com/TemaKut/messenger-client-proto/gen/go";
+
+message Update {
+  // TODO oneof data {MessageNewUpdate}
+}

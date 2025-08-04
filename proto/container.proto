@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package messenger;
+
+option go_package = "github.com/TemaKut/messenger-client-proto/gen/go";
+
+import "google/protobuf/timestamp.proto";
+import "response.proto";
+import "update.proto";
+import "error.proto";
+
+
+
+
+message ServerMessageContainer {
+  google.protobuf.Timestamp server_time = 1;
+
+  reserved 2 to 10;
+
+  oneof data {
+    Response response = 11;
+    Update update = 12;
+    Error error = 13;
+  }
+}
