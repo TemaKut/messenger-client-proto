@@ -13,9 +13,10 @@ import "error.proto";
 
 
 message ServerMessageContainer {
-  google.protobuf.Timestamp server_time = 1;
+  string request_id = 1; // id from request, optional
+  google.protobuf.Timestamp server_time = 2;
 
-  reserved 2 to 10;
+  reserved 3 to 10;
 
   oneof data {
     Response response = 11;

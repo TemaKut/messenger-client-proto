@@ -8,6 +8,9 @@ import * as update_pb from "./update_pb";
 import * as error_pb from "./error_pb";
 
 export class ServerMessageContainer extends jspb.Message {
+  getRequestId(): string;
+  setRequestId(value: string): void;
+
   hasServerTime(): boolean;
   clearServerTime(): void;
   getServerTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -41,6 +44,7 @@ export class ServerMessageContainer extends jspb.Message {
 
 export namespace ServerMessageContainer {
   export type AsObject = {
+    requestId: string,
     serverTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     response?: response_pb.Response.AsObject,
     update?: update_pb.Update.AsObject,

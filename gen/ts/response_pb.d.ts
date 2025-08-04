@@ -6,9 +6,6 @@ import * as user_user_pb from "./user/user_pb";
 import * as user_auth_pb from "./user/auth_pb";
 
 export class Response extends jspb.Message {
-  getRequestId(): string;
-  setRequestId(value: string): void;
-
   hasUserRegister(): boolean;
   clearUserRegister(): void;
   getUserRegister(): UserRegisterResponse | undefined;
@@ -32,7 +29,6 @@ export class Response extends jspb.Message {
 
 export namespace Response {
   export type AsObject = {
-    requestId: string,
     userRegister?: UserRegisterResponse.AsObject,
     userAuthorize?: UserAuthorizeResponse.AsObject,
   }

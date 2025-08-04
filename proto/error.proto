@@ -5,9 +5,8 @@ package messenger;
 option go_package = "github.com/TemaKut/messenger-client-proto/gen/go";
 
 message Error {
-  string request_id = 1; // id from request
-  ErrorReason reason = 2;
-  string description = 3;
+  ErrorReason reason = 1;
+  string description = 2;
 }
 
 enum ErrorReason {

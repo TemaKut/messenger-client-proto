@@ -4,9 +4,6 @@
 import * as jspb from "google-protobuf";
 
 export class Error extends jspb.Message {
-  getRequestId(): string;
-  setRequestId(value: string): void;
-
   getReason(): ErrorReasonMap[keyof ErrorReasonMap];
   setReason(value: ErrorReasonMap[keyof ErrorReasonMap]): void;
 
@@ -25,7 +22,6 @@ export class Error extends jspb.Message {
 
 export namespace Error {
   export type AsObject = {
-    requestId: string,
     reason: ErrorReasonMap[keyof ErrorReasonMap],
     description: string,
   }

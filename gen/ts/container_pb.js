@@ -111,6 +111,7 @@ proto.messenger.ServerMessageContainer.prototype.toObject = function(opt_include
  */
 proto.messenger.ServerMessageContainer.toObject = function(includeInstance, msg) {
   var f, obj = {
+requestId: jspb.Message.getFieldWithDefault(msg, 1, ""),
 serverTime: (f = msg.getServerTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
 response: (f = msg.getResponse()) && response_pb.Response.toObject(includeInstance, f),
 update: (f = msg.getUpdate()) && update_pb.Update.toObject(includeInstance, f),
@@ -152,6 +153,10 @@ proto.messenger.ServerMessageContainer.deserializeBinaryFromReader = function(ms
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setRequestId(value);
+      break;
+    case 2:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setServerTime(value);
@@ -200,10 +205,17 @@ proto.messenger.ServerMessageContainer.prototype.serializeBinary = function() {
  */
 proto.messenger.ServerMessageContainer.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getRequestId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getServerTime();
   if (f != null) {
     writer.writeMessage(
-      1,
+      2,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -236,12 +248,30 @@ proto.messenger.ServerMessageContainer.serializeBinaryToWriter = function(messag
 
 
 /**
- * optional google.protobuf.Timestamp server_time = 1;
+ * optional string request_id = 1;
+ * @return {string}
+ */
+proto.messenger.ServerMessageContainer.prototype.getRequestId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.messenger.ServerMessageContainer} returns this
+ */
+proto.messenger.ServerMessageContainer.prototype.setRequestId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp server_time = 2;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.messenger.ServerMessageContainer.prototype.getServerTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 1));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
 };
 
 
@@ -250,7 +280,7 @@ proto.messenger.ServerMessageContainer.prototype.getServerTime = function() {
  * @return {!proto.messenger.ServerMessageContainer} returns this
 */
 proto.messenger.ServerMessageContainer.prototype.setServerTime = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -268,7 +298,7 @@ proto.messenger.ServerMessageContainer.prototype.clearServerTime = function() {
  * @return {boolean}
  */
 proto.messenger.ServerMessageContainer.prototype.hasServerTime = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

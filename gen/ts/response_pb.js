@@ -150,7 +150,6 @@ proto.messenger.Response.prototype.toObject = function(opt_includeInstance) {
  */
 proto.messenger.Response.toObject = function(includeInstance, msg) {
   var f, obj = {
-requestId: jspb.Message.getFieldWithDefault(msg, 1, ""),
 userRegister: (f = msg.getUserRegister()) && proto.messenger.UserRegisterResponse.toObject(includeInstance, f),
 userAuthorize: (f = msg.getUserAuthorize()) && proto.messenger.UserAuthorizeResponse.toObject(includeInstance, f)
   };
@@ -189,10 +188,6 @@ proto.messenger.Response.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setRequestId(value);
-      break;
     case 11:
       var value = new proto.messenger.UserRegisterResponse;
       reader.readMessage(value,proto.messenger.UserRegisterResponse.deserializeBinaryFromReader);
@@ -232,13 +227,6 @@ proto.messenger.Response.prototype.serializeBinary = function() {
  */
 proto.messenger.Response.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRequestId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getUserRegister();
   if (f != null) {
     writer.writeMessage(
@@ -255,24 +243,6 @@ proto.messenger.Response.serializeBinaryToWriter = function(message, writer) {
       proto.messenger.UserAuthorizeResponse.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * optional string request_id = 1;
- * @return {string}
- */
-proto.messenger.Response.prototype.getRequestId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.messenger.Response} returns this
- */
-proto.messenger.Response.prototype.setRequestId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
