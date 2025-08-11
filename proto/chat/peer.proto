@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package messenger.chat;
+
+option go_package = "github.com/TemaKut/messenger-client-proto/gen/go/chat";
+
+message Peer {
+  oneof data {
+    PeerChannel channel = 1;
+  }
+}
+
+message PeerChannel {
+  string id = 1;
+}
