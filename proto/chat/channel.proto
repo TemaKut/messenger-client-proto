@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package messenger.chat;
+
+option go_package = "github.com/TemaKut/messenger-client-proto/gen/go/chat";
+
+message Channel {
+  string id = 1;
+  string title = 2;
+}
+
+message ChannelMember {
+  string user_id = 1;
+  bool is_owner = 2;
+}

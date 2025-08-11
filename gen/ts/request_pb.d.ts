@@ -2,6 +2,7 @@
 // file: request.proto
 
 import * as jspb from "google-protobuf";
+import * as chat_peer_pb from "./chat/peer_pb";
 
 export class Request extends jspb.Message {
   getId(): string;
@@ -16,6 +17,16 @@ export class Request extends jspb.Message {
   clearUserAuthorize(): void;
   getUserAuthorize(): UserAuthorizeRequest | undefined;
   setUserAuthorize(value?: UserAuthorizeRequest): void;
+
+  hasChannelCreate(): boolean;
+  clearChannelCreate(): void;
+  getChannelCreate(): ChannelCreateRequest | undefined;
+  setChannelCreate(value?: ChannelCreateRequest): void;
+
+  hasChannel(): boolean;
+  clearChannel(): void;
+  getChannel(): ChannelRequest | undefined;
+  setChannel(value?: ChannelRequest): void;
 
   getDataCase(): Request.DataCase;
   serializeBinary(): Uint8Array;
@@ -33,12 +44,16 @@ export namespace Request {
     id: string,
     userRegister?: UserRegisterRequest.AsObject,
     userAuthorize?: UserAuthorizeRequest.AsObject,
+    channelCreate?: ChannelCreateRequest.AsObject,
+    channel?: ChannelRequest.AsObject,
   }
 
   export enum DataCase {
     DATA_NOT_SET = 0,
     USER_REGISTER = 11,
     USER_AUTHORIZE = 12,
+    CHANNEL_CREATE = 20,
+    CHANNEL = 21,
   }
 }
 
@@ -123,6 +138,48 @@ export namespace UserAuthorizeEmailCredential {
   export type AsObject = {
     email: string,
     password: string,
+  }
+}
+
+export class ChannelCreateRequest extends jspb.Message {
+  getTitle(): string;
+  setTitle(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChannelCreateRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChannelCreateRequest): ChannelCreateRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChannelCreateRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChannelCreateRequest;
+  static deserializeBinaryFromReader(message: ChannelCreateRequest, reader: jspb.BinaryReader): ChannelCreateRequest;
+}
+
+export namespace ChannelCreateRequest {
+  export type AsObject = {
+    title: string,
+  }
+}
+
+export class ChannelRequest extends jspb.Message {
+  hasPeer(): boolean;
+  clearPeer(): void;
+  getPeer(): chat_peer_pb.Peer | undefined;
+  setPeer(value?: chat_peer_pb.Peer): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChannelRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ChannelRequest): ChannelRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChannelRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChannelRequest;
+  static deserializeBinaryFromReader(message: ChannelRequest, reader: jspb.BinaryReader): ChannelRequest;
+}
+
+export namespace ChannelRequest {
+  export type AsObject = {
+    peer?: chat_peer_pb.Peer.AsObject,
   }
 }
 

@@ -4,6 +4,8 @@ package messenger;
 
 option go_package = "github.com/TemaKut/messenger-client-proto/gen/go";
 
+import "chat/peer.proto";
+
 message Request {
   string id = 1; // uuid
 
@@ -13,6 +15,9 @@ message Request {
     UserRegisterRequest user_register = 11;
     UserAuthorizeRequest user_authorize = 12;
     // TODO подумать над рефреш токеном, либо из хедеров подключения либо отдельный запрос либо в UserAuthorizeRequest
+
+    ChannelCreateRequest channel_create = 20;
+    ChannelRequest channel = 21;
   }
 }
 
@@ -34,4 +39,12 @@ message UserAuthorizeRequest {
 message UserAuthorizeEmailCredential {
   string email = 1;
   string password = 2;
+}
+
+message ChannelCreateRequest {
+  string title = 1;
+}
+
+message ChannelRequest {
+  messenger.chat.Peer peer = 1;
 }

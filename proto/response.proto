@@ -6,6 +6,7 @@ option go_package = "github.com/TemaKut/messenger-client-proto/gen/go";
 
 import "user/user.proto";
 import "user/auth.proto";
+import "chat/channel.proto";
 
 
 message Response {
@@ -14,6 +15,9 @@ message Response {
   oneof data {
     UserRegisterResponse user_register = 11;
     UserAuthorizeResponse user_authorize = 12;
+
+    ChannelCreateResponse channel_create = 20;
+    ChannelResponse channel = 21;
   }
 }
 
@@ -24,4 +28,14 @@ message UserRegisterResponse {
 message UserAuthorizeResponse {
   messenger.user.User user = 1;
   messenger.user.AuthParams auth_params = 2;
+}
+
+
+message ChannelCreateResponse {
+  messenger.chat.Channel channel = 1;
+}
+
+message ChannelResponse {
+  messenger.chat.Channel channel = 1;
+  repeated messenger.chat.ChannelMember members = 2;
 }
